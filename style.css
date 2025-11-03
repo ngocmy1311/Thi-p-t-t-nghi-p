@@ -333,3 +333,101 @@ body {
   top: 30px; /* xuống từ trên */
   opacity: 1;
 }
+/* ===================== MEDIA QUERY MOBILE ===================== */
+@media (max-width: 480px) {
+  /* CARD co theo màn hình */
+  .card {
+    width: 90%;
+    max-width: 90%;
+    padding: 15px 10px 20px;
+  }
+
+  /* Header font nhỏ hơn */
+  .invite-title {
+    font-size: 1.4rem;
+    margin-bottom: 3px;
+  }
+
+  .main-title {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
+
+  /* Ảnh trong card */
+  .card-images {
+    width: 90%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .card-images img:first-child {
+    height: auto;
+    border-width: 6px;
+  }
+
+  .card-images img:last-child {
+    width: 80%;
+    height: auto;
+    top: 10px;
+    left: 10px;
+    border-width: 4px;
+  }
+
+  /* Nội dung card */
+  .text-highlight {
+    font-size: 1.5rem;
+  }
+
+  .guest-name {
+    font-size: 1rem;
+  }
+
+  .card-info {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .card-message {
+    font-size: 0.85rem;
+  }
+
+  .signature {
+    font-size: 1.3rem;
+  }
+
+  /* Nút bấm */
+  .card-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn {
+    padding: 8px 15px;
+    font-size: 0.75rem;
+  }
+
+  /* Glow card nhỏ hơn */
+  .card-glow {
+    width: 250%;
+    height: 250%;
+    top: -75%;
+    left: -75%;
+  }
+
+  /* Envelope (cửa mở) co theo mobile */
+  .envelope {
+    animation: fadeOut 2s ease 3s forwards;
+  }
+
+  /* Clouds */
+  .cloud1, .cloud2, .cloud3 {
+    width: 120px;
+    height: 60px;
+  }
+
+  /* Toast nhỏ hơn */
+  .toast {
+    font-size: 0.9rem;
+    padding: 10px 15px;
+  }
+}
