@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Thiệp mời Lễ tốt nghiệp - Tông Hồng Trắng</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Dancing+Script&family=Monsieur+La+Doulaise&family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<div id="toast" class="toast">Cảm ơn bạn yêu💖</div>
+
+<body>
+
+  <!-- Cửa phong bì mở -->
+  <div class="envelope">
+    <div class="left-door"></div>
+    <div class="right-door"></div>
+  </div>
+
+  <!-- Mây bay nền -->
+  <div class="cloud cloud1"></div>
+  <div class="cloud cloud2"></div>
+  <div class="cloud cloud3"></div>
+
+  <!-- Nội dung thiệp -->
+  <div class="card-container fade-in-scale" data-scroll>
+    <div class="card" data-scroll>
+      <div class="card-glow"></div>
+
+      <header class="card-header">
+        <h1 class="invite-title" data-scroll>Thư mời tham dự</h1>
+        <h2 class="main-title" data-scroll>LỄ TỐT NGHIỆP</h2>
+      </header>
+
+      <section class="card-images" data-scroll>
+        <img src="https://picsum.photos/400/300?grayscale" alt="ảnh chính">
+        <img src="./image/z7183361059029_941a2b2106e810f27b67fc6431cb862c.jpg" alt="ảnh phụ">
+      </section>
+
+      <section class="card-body" data-scroll>
+        <p class="text-blue">Thương mời tham dự</p>
+        <p class="text-highlight">Bạn yêu</p>
+        <p>THAM DỰ LỄ TỐT NGHIỆP</p>
+        <p class="guest-name">Trần Lâm Phi Tuyết</p>
+      </section>
+
+      <section class="card-info" data-scroll>
+        <p>VÀO LÚC <span class="bold">16H THỨ 4</span></p>
+        <p>NGÀY 26 THÁNG 11 NĂM 2025</p>
+        <p>TẠI CƠ SỞ CHÍNH - TRƯỜNG ĐH CÔNG NGHIỆP TP.HCM</p>
+      </section>
+    
+      <section class="card-message" data-scroll>
+        <p>Hãy đến và chung vui cùng mình để lưu lại những khoảnh khắc tuyệt vời nhé!</p>
+        <p class="thanks">TRÂN TRỌNG!</p>
+        <p class="signature">Phi Tuyết 8386 Mãi Đỉnh 💖</p>
+      </section>
+
+      <section class="card-buttons" data-scroll>
+        <button class="btn btn-primary">XÁC NHẬN THAM DỰ</button>
+        <button id="btn-directions" class="btn btn-outline">XEM CHỈ ĐƯỜNG</button>
+      </section>
+    </div>
+  </div>
+
+  <!-- JS Scroll + Glow -->
+  <script>
+    const glow = document.querySelector('.card-glow');
+    window.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 30;
+      const y = (e.clientY / window.innerHeight - 0.5) * 30;
+      glow.style.transform = `translateX(${x}px) translateY(${y}px)`;
+    });
+
+    // Scroll animation
+    const scrollElements = document.querySelectorAll("[data-scroll]");
+    const elementInView = (el, offset = 0) => {
+      const elementTop = el.getBoundingClientRect().top;
+      return elementTop <= (window.innerHeight || document.documentElement.clientHeight) - offset;
+    };
+    const displayScrollElement = (el) => el.classList.add("scroll-visible");
+    const hideScrollElement = (el) => el.classList.remove("scroll-visible");
+
+    const handleScrollAnimation = () => {
+      scrollElements.forEach((el) => {
+        if (elementInView(el, 0)) { displayScrollElement(el); }
+        else { hideScrollElement(el); }
+      });
+    };
+
+    window.addEventListener("scroll", handleScrollAnimation);
+    window.addEventListener("load", () => {
+      scrollElements.forEach(el => el.classList.add("scroll-visible")); // luôn hiển thị
+      handleScrollAnimation();
+    });
+    // Lấy nút xác nhận
+    const confirmBtn = document.querySelector('.btn-primary');
+    const toast = document.getElementById('toast');
+
+    confirmBtn.addEventListener('click', () => {
+      // hiện toast
+      toast.classList.add('show');
+
+      // ẩn toast sau 3s
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    });
+    const directionsBtn = document.getElementById('btn-directions');
+
+    // Địa chỉ Trường ĐH Công nghiệp TP.HCM
+    const destinationAddress = encodeURIComponent("Trường Đại học Công nghiệp TP.HCM, Nguyễn Văn Bảo/12 Đ. Hạnh Thông, Phường, Gò Vấp, Thành phố Hồ Chí Minh 700000");
+
+    directionsBtn.addEventListener('click', () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const userLat = position.coords.latitude;
+            const userLng = position.coords.longitude;
+
+            // Tạo URL Google Maps chỉ đường từ vị trí hiện tại tới địa chỉ
+            const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLng}&destination=${destinationAddress}&travelmode=driving`;
+
+            // Mở Maps trong tab mới
+            window.open(mapsUrl, '_blank');
+          },
+          (error) => {
+            alert("Không thể lấy vị trí của bạn. Vui lòng bật định vị.");
+          }
+        );
+      } else {
+        alert("Trình duyệt của bạn không hỗ trợ định vị.");
+      }
+    });
+
+    
+  </script>
+
+</body>
+
+</html>
