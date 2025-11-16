@@ -131,8 +131,7 @@ body {
 
 /* ===================== THÔNG TIN SỰ KIỆN ===================== */
 .card-info {
-    font-family: 'Work Sans', sans-serif;
-
+  font-family: 'Playfair Display', serif; /* font serif sang trọng */
   font-size: clamp(0.75rem, 2.5vw, 0.9rem);
   color: #6b2737;
   line-height: 1.6;
@@ -479,3 +478,5 @@ body {
     font-size: 1.5rem;
     font-weight: bold;
   }
+
+
