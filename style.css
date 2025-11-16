@@ -78,7 +78,7 @@ body {
   height: 100%;
   object-fit: cover;
   border-radius: 12px;
-  transform: rotate(-4deg);
+  /* transform: rotate(-4deg); */ /* Bỏ xoay */
   box-shadow: 0 8px 18px rgba(255, 105, 180, 0.3);
 }
 
@@ -88,12 +88,11 @@ body {
   object-fit: cover;
   border-radius: 10px;
   position: absolute;
-  top: 15px;
-  left: 15px;
-  transform: rotate(3deg);
+  top: 5%;
+  left: 5%;
+  /* transform: rotate(3deg); */ /* Bỏ xoay */
   opacity: 0.9;
 }
-
 /* ===================== PHẦN NỘI DUNG ===================== */
 .card-body {
   margin-bottom: 20px;
@@ -220,14 +219,7 @@ body {
 }
 
 /* ===================== HOA & MÂY ===================== */
-.card::before {
-  content: "☁️";
-  position: absolute;
-  top: 15px;
-  left: 25px;
-  font-size: 1.5rem;
-  opacity: 0.7;
-}
+
 
 .card::after {
   content: "🌸";
@@ -290,19 +282,8 @@ body {
 }
 
 /* ===================== MÂY BAY HẬU CẢNH ===================== */
-.cloud {
-  position: fixed;
-  background: url('https://i.imgur.com/8YV0PZK.png') no-repeat center / contain;
-  opacity: 0.7;
-  z-index: 5;
-  animation-timing-function: linear;
-}
 
-.cloud1 { width: 200px; height: 100px; top: 20%; left: -250px; animation: cloudMove 40s linear infinite 5s; }
-.cloud2 { width: 180px; height: 90px; top: 50%; left: -200px; opacity: 0.5; animation: cloudMove 55s linear infinite 7s; }
-.cloud3 { width: 160px; height: 80px; top: 70%; left: -180px; opacity: 0.6; animation: cloudMove 50s linear infinite 6s; }
 
-@keyframes cloudMove { 0% { transform: translateX(0); } 100% { transform: translateX(130vw); } }
 @keyframes textUp { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
 @keyframes openLeft { 0% { transform: translateX(0) rotateY(0); } 70% { transform: translateX(-60%) rotateY(70deg); } 100% { transform: translateX(-100%) rotateY(90deg); } }
 @keyframes openRight { 0% { transform: translateX(0) rotateY(0); } 70% { transform: translateX(60%) rotateY(-70deg); } 100% { transform: translateX(100%) rotateY(-90deg); } }
@@ -500,3 +481,14 @@ body {
   }
 
 
+/* Nón tốt nghiệp trên card */
+
+
+.card::after {
+  content: "🎓";
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 2rem;
+  opacity: 0.9;
+}
