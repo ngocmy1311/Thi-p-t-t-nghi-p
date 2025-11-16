@@ -6,21 +6,27 @@
   <title>Thiệp mời Lễ tốt nghiệp - Tông Hồng Trắng</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&family=Pacifico&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Monsieur+La+Doulaise&family=Pacifico&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
+
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link href='https://cdn.boxicons.com/3.0.3/fonts/basic/boxicons.min.css' rel='stylesheet'>
+  <link href='https://cdn.boxicons.com/3.0.3/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
+
 </head>
-<div id="toast" class="toast">Cảm ơn bạn yêu💖</div>
 
 <body>
 
   <!-- Cửa phong bì mở -->
-  <div class="envelope">
+  <!-- <div class="envelope">
     <div class="left-door"></div>
     <div class="right-door"></div>
-  </div>
+  </div> -->
 
   <!-- Mây bay nền -->
   <div class="cloud cloud1"></div>
@@ -36,35 +42,43 @@
         <h1 class="invite-title" data-scroll>Thư mời tham dự</h1>
         <h2 class="main-title" data-scroll>LỄ TỐT NGHIỆP</h2>
       </header>
-         <section class="card-body" data-scroll>
+      <section class="card-body" data-scroll>
         <p class="guest-name">Phi Tuyết</p>
       </section>
 
       <section class="card-images" data-scroll>
-        <img src="/images/anhchinh.jpg" alt="ảnh chính">
-        <img src="/images/anhphu.jpg" alt="ảnh phụ">
+        <img src="/images/anhphu.jpg" alt="ảnh chính">
+        <img src="/images/anhchinh.jpg" alt="ảnh phụ">
       </section>
-
-   
-
+      <section class="card-time" data-scroll>
+        <div class="time-line">THÁNG 11</div>
+        <div class="time-day">26</div>
+        <div class="time-line small">15:30</div>
+      </section>
       <section class="card-info" data-scroll>
-        <p>VÀO LÚC <span class="bold">16H THỨ 4</span></p>
-        <p>NGÀY 26 THÁNG 11 NĂM 2025</p>
-        <p>TẠI CƠ SỞ CHÍNH - TRƯỜNG ĐH CÔNG NGHIỆP TP.HCM</p>
+        <p><i class='bxr  bx-location-alt-2'></i> Địa điểm: TRƯỜNG ĐẠI HỌC CÔNG NGHIỆP THÀNH PHỐ HỒ CHÍ MINH (Cổng 1)
+        </p>
+        <p>Sự hiện diện của bạn là niềm vinh hạnh đối với mình</p>
+        <p>Hẹn gặp bạn tại buổi lễ!</p>
+        <p><i class='bxr  bx-phone'></i> 0917170273 - Phi Tuyết</p>
       </section>
-    
       <section class="card-message" data-scroll>
-        <p>Hãy đến và chung vui cùng mình để lưu lại những khoảnh khắc tuyệt vời nhé!</p>
         <p class="thanks">TRÂN TRỌNG!</p>
-        <p class="signature">Phi Tuyết 8386 Mãi Đỉnh 💖</p>
+        <!-- <p class="signature">Phi Tuyết 8386 Mãi Đỉnh 💖</p> -->
       </section>
 
       <section class="card-buttons" data-scroll>
-        <button class="btn btn-primary">ĐỊA ĐIỂM CHỤP ẢNH</button>
+        <button id="photoSpotBtn" class="btn btn-primary">ĐIỂM CHỤP ẢNH</button>
         <button id="btn-directions" class="btn btn-outline">XEM CHỈ ĐƯỜNG</button>
       </section>
     </div>
   </div>
+  <div id="photoPopup" class="popup-overlay" style="display: none;">
+  <div class="popup-content">
+    <span id="closePhotoPopup" class="popup-close">&times;</span>
+    <img src="/images/address.jpg" alt="Điểm chụp hình" class="popup-image">
+  </div>
+</div>
 
   <!-- JS Scroll + Glow -->
   <script>
@@ -96,19 +110,7 @@
       scrollElements.forEach(el => el.classList.add("scroll-visible")); // luôn hiển thị
       handleScrollAnimation();
     });
-    // Lấy nút xác nhận
-    const confirmBtn = document.querySelector('.btn-primary');
-    const toast = document.getElementById('toast');
 
-    confirmBtn.addEventListener('click', () => {
-      // hiện toast
-      toast.classList.add('show');
-
-      // ẩn toast sau 3s
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 3000);
-    });
     const directionsBtn = document.getElementById('btn-directions');
 
     // Địa chỉ Trường ĐH Công nghiệp TP.HCM
@@ -135,8 +137,28 @@
         alert("Trình duyệt của bạn không hỗ trợ định vị.");
       }
     });
+     const photoBtn = document.getElementById('photoSpotBtn');
+  const photoPopup = document.getElementById('photoPopup');
+  const closePhoto = document.getElementById('closePhotoPopup');
 
-    
+  // Mở popup khi click
+  photoBtn.addEventListener('click', () => {
+    photoPopup.style.display = 'flex';
+  });
+
+  // Đóng popup khi click dấu X
+  closePhoto.addEventListener('click', () => {
+    photoPopup.style.display = 'none';
+  });
+
+  // Đóng popup khi click ngoài nội dung
+  photoPopup.addEventListener('click', (e) => {
+    if (e.target === photoPopup) {
+      photoPopup.style.display = 'none';
+    }
+  });
+
+
   </script>
 
 </body>

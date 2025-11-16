@@ -358,3 +358,124 @@ body {
 @media screen and (min-width: 1025px) and (max-width: 1440px) {
   .card { width: 60%; }
 }
+.card-time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;           /* khoảng cách giữa các mục */
+  font-family: 'Work Sans', sans-serif;
+  margin: 20px 0;
+}
+
+/* THÁNG 11 & 15:30 có gạch trên + dưới */
+.time-line {
+  font-weight: 600;
+  color: #6b2737;
+  position: relative;
+  text-align: center;
+  padding: 10px 0;
+  min-width: 70px;     /* giúp gạch không bị lệch */
+}
+
+/* Gạch trên và dưới */
+.time-line::before,
+.time-line::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 70px;
+  height: 1.5px;
+  background: #6b2737;
+  transform: translateX(-50%);
+}
+
+.time-line::before { top: 0; }
+.time-line::after { bottom: 0; }
+
+/* THÁNG nhỏ – giờ nhỏ */
+.time-line.small { font-size: 0.85rem; }
+
+/* Ngày 26 (ở giữa, to, không gạch) */
+.time-day {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #3a1c24;
+  margin: 0 10px;
+}
+/* Popup nền mờ toàn màn hình */
+.popup {
+  display: none; 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%; 
+  background-color: rgba(0, 0, 0, 0.5); 
+  justify-content: center; 
+  align-items: center; 
+  z-index: 9999;
+}
+
+/* Nội dung popup */
+.popup-content {
+  position: relative;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  max-width: 90%; /* tối đa 90% chiều rộng màn hình */
+  max-height: 80%; /* tối đa 80% chiều cao màn hình */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Nút đóng */
+.close {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Ảnh bản đồ nhỏ lại */
+.map-img {
+  max-width: 100%; /* ảnh co vừa với popup */
+  max-height: 70vh; /* tối đa 70% chiều cao viewport */
+  object-fit: contain; /* giữ tỉ lệ ảnh */
+  border-radius: 5px;
+}
+.popup-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.6);
+    z-index: 1000;
+  }
+
+  .popup-content {
+    position: relative;
+    background: white;
+    border-radius: 15px;
+    padding: 10px;
+    max-width: 90%;
+    max-height: 90%;
+  }
+
+  .popup-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .popup-close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
