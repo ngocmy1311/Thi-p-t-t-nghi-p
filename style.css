@@ -96,6 +96,7 @@ body {
 /* ===================== PHẦN NỘI DUNG ===================== */
 .card-body {
   margin-bottom: 20px;
+  transform: translateY(30px);
 }
 
 .text-blue {
