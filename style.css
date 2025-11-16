@@ -131,18 +131,30 @@ body {
 
 /* ===================== THÔNG TIN SỰ KIỆN ===================== */
 .card-info {
-  font-family: 'Playfair Display', serif; /* font serif sang trọng */
-  font-size: clamp(0.75rem, 2.5vw, 0.9rem);
-  color: #6b2737;
-  line-height: 1.6;
+  font-family: 'Playfair Display', serif; /* serif sang trọng */
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
+  color: #4a1c2b; /* màu sang trọng hơn */
+  line-height: 1.7;
   margin-bottom: 25px;
+  text-align: center;
 }
 
 .card-info .bold {
   font-weight: 700;
   color: #d81b60;
 }
+/* Khoảng cách giữa các dòng */
+.card-info p {
+  margin: 8px 0;
+}
 
+/* Icon location & phone */
+.card-info i {
+  font-size: 1rem;
+  color: #d63384; /* màu nổi bật, quý phái */
+  margin-right: 6px;
+  vertical-align: middle;
+}
 /* ===================== LỜI NHẮN ===================== */
 .card-message {
     font-family: 'Work Sans', sans-serif;
@@ -348,8 +360,16 @@ body {
   }
   .card-images { aspect-ratio: 3/4; }
 }
-@media screen and (min-width: 481px) and (max-width: 768px) {
-  .card { width: 90%; padding: 20px 15px 25px; }
+@media screen and (max-width: 480px) {
+  .card-info {
+    font-size: clamp(0.8rem, 3vw, 0.95rem);
+  }
+  .card-info p {
+    margin: 6px 0;
+  }
+  .card-info i {
+    font-size: 0.9rem;
+  }
 }
 @media screen and (min-width: 769px) and (max-width: 1024px) {
   .card { width: 70%; max-width: 380px; }
