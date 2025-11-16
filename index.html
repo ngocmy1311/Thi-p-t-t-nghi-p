@@ -48,7 +48,7 @@
 
       <section class="card-images" data-scroll>
         <img src="/images/anhphu.jpg" alt="ảnh chính">
-        <img src="/images/anhchinh.jpg" alt="ảnh phụ">
+        <img src="/images/anhpt.jpg" alt="ảnh phụ">
       </section>
       <section class="card-time" data-scroll>
         <div class="time-line">THÁNG 11</div>
@@ -74,11 +74,11 @@
     </div>
   </div>
   <div id="photoPopup" class="popup-overlay" style="display: none;">
-  <div class="popup-content">
-    <span id="closePhotoPopup" class="popup-close">&times;</span>
-    <img src="/images/address.jpg" alt="Điểm chụp hình" class="popup-image">
+    <div class="popup-content">
+      <span id="closePhotoPopup" class="popup-close">&times;</span>
+      <img src="/images/address.jpg" alt="Điểm chụp hình" class="popup-image">
+    </div>
   </div>
-</div>
 
   <!-- JS Scroll + Glow -->
   <script>
@@ -111,10 +111,9 @@
       handleScrollAnimation();
     });
 
+    // Nút chỉ đường
     const directionsBtn = document.getElementById('btn-directions');
-
-    // Địa chỉ Trường ĐH Công nghiệp TP.HCM
-    const destinationAddress = encodeURIComponent("Trường Đại học Công nghiệp TP.HCM, Nguyễn Văn Bảo/12 Đ. Hạnh Thông, Phường, Gò Vấp, Thành phố Hồ Chí Minh 700000");
+    const destinationAddress = "Trường Đại học Công nghiệp TP.HCM, Nguyễn Văn Bảo, Gò Vấp, TP.HCM";
 
     directionsBtn.addEventListener('click', () => {
       if (navigator.geolocation) {
@@ -122,12 +121,23 @@
           (position) => {
             const userLat = position.coords.latitude;
             const userLng = position.coords.longitude;
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
-            // Tạo URL Google Maps chỉ đường từ vị trí hiện tại tới địa chỉ
-            const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLng}&destination=${destinationAddress}&travelmode=driving`;
+            if (isIOS) {
+              // Mở Google Maps app trên iOS
+              const url = `comgooglemaps://?saddr=${userLat},${userLng}&daddr=${encodeURIComponent(destinationAddress)}&directionsmode=driving`;
+              window.location.href = url;
 
-            // Mở Maps trong tab mới
-            window.open(mapsUrl, '_blank');
+              // Fallback web nếu app không có
+              setTimeout(() => {
+                const webUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLng}&destination=${encodeURIComponent(destinationAddress)}&travelmode=driving`;
+                window.open(webUrl, '_blank');
+              }, 1000);
+            } else {
+              // Android & desktop
+              const mapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${userLat},${userLng}&destination=${encodeURIComponent(destinationAddress)}&travelmode=driving`;
+              window.open(mapsUrl, '_blank');
+            }
           },
           (error) => {
             alert("Không thể lấy vị trí của bạn. Vui lòng bật định vị.");
@@ -137,26 +147,26 @@
         alert("Trình duyệt của bạn không hỗ trợ định vị.");
       }
     });
-     const photoBtn = document.getElementById('photoSpotBtn');
-  const photoPopup = document.getElementById('photoPopup');
-  const closePhoto = document.getElementById('closePhotoPopup');
+    const photoBtn = document.getElementById('photoSpotBtn');
+    const photoPopup = document.getElementById('photoPopup');
+    const closePhoto = document.getElementById('closePhotoPopup');
 
-  // Mở popup khi click
-  photoBtn.addEventListener('click', () => {
-    photoPopup.style.display = 'flex';
-  });
+    // Mở popup khi click
+    photoBtn.addEventListener('click', () => {
+      photoPopup.style.display = 'flex';
+    });
 
-  // Đóng popup khi click dấu X
-  closePhoto.addEventListener('click', () => {
-    photoPopup.style.display = 'none';
-  });
-
-  // Đóng popup khi click ngoài nội dung
-  photoPopup.addEventListener('click', (e) => {
-    if (e.target === photoPopup) {
+    // Đóng popup khi click dấu X
+    closePhoto.addEventListener('click', () => {
       photoPopup.style.display = 'none';
-    }
-  });
+    });
+
+    // Đóng popup khi click ngoài nội dung
+    photoPopup.addEventListener('click', (e) => {
+      if (e.target === photoPopup) {
+        photoPopup.style.display = 'none';
+      }
+    });
 
 
   </script>
